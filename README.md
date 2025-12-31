@@ -5,7 +5,7 @@
 ## Tags
 
 - Real-Time Inventory
-- 40% Stockout Reduction
+- Angular + .NET
 - Predictive Maintenance
 
 ## Run Locally
