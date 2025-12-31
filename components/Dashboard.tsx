@@ -23,11 +23,11 @@ export const Dashboard: React.FC<DashboardProps> = ({ vendors, onNavigate }) => 
           <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
             <Icons.Users size={64} />
           </div>
-          <p className="text-text-secondary text-xs uppercase tracking-widest font-bold">Total Vendors</p>
-          <h2 className="text-4xl font-mono font-bold text-white mt-2">{vendors.length}</h2>
+          <p className="text-text-secondary text-xs uppercase tracking-widest font-bold">Total Locations</p>
+          <h2 className="text-4xl font-mono font-bold text-white mt-2">142</h2>
           <div className="mt-4 flex items-center text-green-400 text-xs gap-1">
             <Icons.TrendUp />
-            <span>+12% from last month</span>
+            <span>+5 New Locations</span>
           </div>
         </GlassCard>
 
@@ -35,10 +35,10 @@ export const Dashboard: React.FC<DashboardProps> = ({ vendors, onNavigate }) => 
           <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity text-yellow-400">
             <Icons.Shield size={64} />
           </div>
-          <p className="text-text-secondary text-xs uppercase tracking-widest font-bold">Avg. Risk Score</p>
-          <h2 className="text-4xl font-mono font-bold text-white mt-2">{avgScore}</h2>
+          <p className="text-text-secondary text-xs uppercase tracking-widest font-bold">Avg. Uptime</p>
+          <h2 className="text-4xl font-mono font-bold text-white mt-2">97.8%</h2>
           <div className="mt-4 flex items-center text-text-secondary text-xs gap-1">
-            <span>Stable metric</span>
+            <span>Target: 99.0%</span>
           </div>
         </GlassCard>
 
@@ -46,11 +46,11 @@ export const Dashboard: React.FC<DashboardProps> = ({ vendors, onNavigate }) => 
           <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity text-primary">
             <Icons.HardHat size={64} />
           </div>
-          <p className="text-text-secondary text-xs uppercase tracking-widest font-bold">Pending Approval</p>
+          <p className="text-text-secondary text-xs uppercase tracking-widest font-bold">Pending Contracts</p>
           <h2 className="text-4xl font-mono font-bold text-white mt-2">{pendingCount}</h2>
           <div className="mt-4 flex items-center text-yellow-400 text-xs gap-1">
             <Icons.Warning />
-            <span>Requires Action</span>
+            <span>Requires Approval</span>
           </div>
         </GlassCard>
 
@@ -58,10 +58,10 @@ export const Dashboard: React.FC<DashboardProps> = ({ vendors, onNavigate }) => 
           <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity text-red-500">
             <Icons.Warning size={64} />
           </div>
-          <p className="text-text-secondary text-xs uppercase tracking-widest font-bold">High Risk Vendors</p>
+          <p className="text-text-secondary text-xs uppercase tracking-widest font-bold">Stockout Alerts</p>
           <h2 className="text-4xl font-mono font-bold text-red-400 mt-2">{highRiskCount}</h2>
           <div className="mt-4 flex items-center text-red-400/80 text-xs gap-1">
-            <span>Needs Mitigation</span>
+            <span>Immediate Refill Needed</span>
           </div>
         </GlassCard>
       </div>
@@ -99,14 +99,14 @@ export const Dashboard: React.FC<DashboardProps> = ({ vendors, onNavigate }) => 
             <div className="flex gap-3 items-start">
               <div className="mt-1 min-w-[8px] h-2 rounded-full bg-primary shadow-[0_0_8px_#00d6cb]"></div>
               <div>
-                <p className="text-sm text-white">New compliance standard (ISO 45001) added to QA checklist.</p>
+                <p className="text-sm text-white">Route optimization completed for North Campus.</p>
                 <p className="text-xs text-text-secondary mt-1">2 hours ago</p>
               </div>
             </div>
             <div className="flex gap-3 items-start">
               <div className="mt-1 min-w-[8px] h-2 rounded-full bg-red-500"></div>
               <div>
-                <p className="text-sm text-white">Safety incident reported for "SteelWorks Inc".</p>
+                <p className="text-sm text-white">Compressor failure alert: Machine ID #4492 (Lobby).</p>
                 <p className="text-xs text-text-secondary mt-1">5 hours ago</p>
               </div>
             </div>

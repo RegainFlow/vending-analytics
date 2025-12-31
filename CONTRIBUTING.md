@@ -1,6 +1,6 @@
-# Contributing to Subcontractor Risk & Opportunity Scorecard
+# Contributing to Supplier Risk Assessment & Performance Dashboard
 
-Welcome to the **Subcontractor Risk & Opportunity Scorecard** project! This document provides a comprehensive overview of the project architecture, development guidelines, and contribution workflow to help you scale and contribute effectively.
+Welcome to the **Supplier Risk Assessment & Performance Dashboard** project! This document provides a comprehensive overview of the project architecture, development guidelines, and contribution workflow to help you scale and contribute effectively.
 
 ---
 
@@ -24,7 +24,7 @@ Welcome to the **Subcontractor Risk & Opportunity Scorecard** project! This docu
 
 ### What is This Project?
 
-The **Subcontractor Risk & Opportunity Scorecard** is an AI-powered vendor risk assessment platform designed for construction and procurement teams. It provides:
+The **Supplier Risk Assessment & Performance Dashboard** is an AI-powered vendor risk assessment platform designed for procurement and supply chain teams. It provides:
 
 - **Real-time Risk Scoring**: Automated vendor assessment across financial health, safety records, project performance, and compliance
 - **AI-Driven Analysis**: Mock AI analysis for vendor evaluation (previously integrated with Gemini AI)
@@ -64,7 +64,7 @@ This project follows a **feature-based architecture** inspired by [bulletproof-r
 ## Current Project Structure
 
 ```
-Subcontractor-Risk-Opportunity-Scorecard/
+Supplier-Risk-Assessment-Scorecard/
 ├── components/              # Shared UI components
 │   ├── Dashboard.tsx       # Main dashboard view
 │   ├── VendorList.tsx      # Vendor listing with filters
@@ -231,7 +231,7 @@ Always use CSS variables instead of hardcoded values:
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd Subcontractor-Risk-Opportunity-Scorecard
+   cd Supplier-Risk-Assessment-Scorecard
    ```
 
 2. **Install dependencies**
@@ -519,6 +519,6 @@ This project is proprietary software. Please contact the project maintainers for
 
 ---
 
-**Thank you for contributing to the Subcontractor Risk & Opportunity Scorecard!** 🚀
+**Thank you for contributing to the Supplier Risk Assessment & Performance Dashboard!** 🚀
 
-Your contributions help build a safer, more efficient construction industry.
+Your contributions help build a safer, more efficient supply chain.

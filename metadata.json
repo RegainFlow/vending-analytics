@@ -1,5 +1,5 @@
 {
-  "name": "RegainFlow Subcontractor QA",
-  "description": "A .NET/Angular inspired scorecard platform for evaluating subcontractor risk and performance using Gemini AI for automated risk assessment.",
+  "name": "VendingFlow Analytics",
+  "description": "A platform for analyzing vending machine supplier performance, location profitability, and restock efficiency.",
   "requestFramePermissions": []
 }

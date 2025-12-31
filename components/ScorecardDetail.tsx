@@ -17,13 +17,13 @@ export const ScorecardDetail: React.FC<ScorecardDetailProps> = ({ vendor, onBack
   const [aiAnalysis, setAiAnalysis] = useState<string | null>(vendor.aiAnalysis || null);
 
   // Safety check for metrics to prevent crashes
-  const metrics = vendor.metrics || { financialHealth: 0, safetyRecord: 0, projectPerformance: 0, compliance: 0 };
+  const metrics = vendor.metrics || { uptime: 0, restockEfficiency: 0, salesPerformance: 0, customerSat: 0 };
 
   const radarData = [
-    { subject: 'Financial', A: metrics.financialHealth, fullMark: 100 },
-    { subject: 'Safety', A: metrics.safetyRecord, fullMark: 100 },
-    { subject: 'Performance', A: metrics.projectPerformance, fullMark: 100 },
-    { subject: 'Compliance', A: metrics.compliance, fullMark: 100 },
+    { subject: 'Uptime', A: metrics.uptime, fullMark: 100 },
+    { subject: 'Restock Eff.', A: metrics.restockEfficiency, fullMark: 100 },
+    { subject: 'Sales Perf.', A: metrics.salesPerformance, fullMark: 100 },
+    { subject: 'CSAT', A: metrics.customerSat, fullMark: 100 },
   ];
 
   const handleAiAnalysis = async () => {
@@ -34,10 +34,10 @@ export const ScorecardDetail: React.FC<ScorecardDetailProps> = ({ vendor, onBack
       const updatedVendor: Vendor = {
         ...vendor,
         metrics: {
-          financialHealth: result.financialHealth,
-          safetyRecord: result.safetyRecord,
-          projectPerformance: result.projectPerformance,
-          compliance: result.compliance
+          uptime: result.uptime,
+          restockEfficiency: result.restockEfficiency,
+          salesPerformance: result.salesPerformance,
+          customerSat: result.customerSat
         },
         riskLevel: result.riskLevel as RiskLevel,
         overallScore: result.overallScore,
@@ -108,14 +108,14 @@ export const ScorecardDetail: React.FC<ScorecardDetailProps> = ({ vendor, onBack
         <GlassCard className="mb-8 p-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
             <div className="flex flex-col items-center justify-center border-r border-white/5 last:border-0">
-              <p className="text-text-secondary text-xs uppercase tracking-widest font-bold mb-3">Risk Assessment</p>
+              <p className="text-text-secondary text-xs uppercase tracking-widest font-bold mb-3">Operational Tier</p>
               <div className="scale-125 transform origin-center">
                 <RiskBadge level={vendor.riskLevel} />
               </div>
             </div>
 
             <div className="flex flex-col items-center justify-center border-r border-white/5 last:border-0">
-              <p className="text-text-secondary text-xs uppercase tracking-widest font-bold mb-1">Overall Score</p>
+              <p className="text-text-secondary text-xs uppercase tracking-widest font-bold mb-1">Overall Performance</p>
               <div className="flex items-baseline gap-1">
                 <span className={`text-6xl font-mono font-bold ${vendor.overallScore >= 80 ? 'text-primary' : vendor.overallScore >= 60 ? 'text-yellow-400' : 'text-red-400'}`}>
                   {vendor.overallScore}
@@ -141,7 +141,7 @@ export const ScorecardDetail: React.FC<ScorecardDetailProps> = ({ vendor, onBack
                     <Icons.Robot size={24} />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-white mb-2">AI Assessment Summary</h3>
+                    <h3 className="text-lg font-bold text-white mb-2">AI Performance Summary</h3>
                     <p className="text-text-secondary leading-relaxed text-sm">
                       {aiAnalysis}
                     </p>
@@ -179,7 +179,7 @@ export const ScorecardDetail: React.FC<ScorecardDetailProps> = ({ vendor, onBack
               <GlassCard className="h-[350px] flex flex-col">
                 <h3 className="text-lg font-bold text-white mb-6 flex items-center gap-2">
                   <Icons.TrendUp size={20} className="text-primary" />
-                  Risk Distribution
+                  Efficiency Distribution
                 </h3>
                 <div className="flex-1 w-full min-h-0 flex items-center justify-center">
                   <ResponsiveContainer width="100%" height="100%">
@@ -211,11 +211,11 @@ export const ScorecardDetail: React.FC<ScorecardDetailProps> = ({ vendor, onBack
             <GlassCard>
               <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
                 <Icons.Building size={20} className="text-text-secondary" />
-                Vendor Details
+                Provider Details
               </h3>
               <div className="space-y-6">
                 <div>
-                  <p className="text-xs text-text-secondary uppercase tracking-wider font-bold mb-2">Company Description</p>
+                  <p className="text-xs text-text-secondary uppercase tracking-wider font-bold mb-2">Service Description</p>
                   <p className="text-sm text-white/80 leading-relaxed bg-white/5 p-4 rounded-xl border border-white/5">
                     {vendor.description}
                   </p>
@@ -223,19 +223,19 @@ export const ScorecardDetail: React.FC<ScorecardDetailProps> = ({ vendor, onBack
 
                 <div className="space-y-4">
                   <div className="flex justify-between items-center border-b border-white/5 pb-2">
-                    <span className="text-sm text-text-secondary">Founded</span>
-                    <span className="text-sm font-mono text-white font-bold">2008</span>
+                    <span className="text-sm text-text-secondary">Contract Start</span>
+                    <span className="text-sm font-mono text-white font-bold">2023</span>
                   </div>
                   <div className="flex justify-between items-center border-b border-white/5 pb-2">
-                    <span className="text-sm text-text-secondary">Employees</span>
-                    <span className="text-sm font-mono text-white font-bold">145</span>
+                    <span className="text-sm text-text-secondary">Machines Managed</span>
+                    <span className="text-sm font-mono text-white font-bold">850</span>
                   </div>
                   <div className="flex justify-between items-center border-b border-white/5 pb-2">
                     <span className="text-sm text-text-secondary">License</span>
                     <span className="text-sm font-mono text-white font-bold">CA-98221</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-text-secondary">Insured</span>
+                    <span className="text-sm text-text-secondary">Liability Insured</span>
                     <span className="text-sm font-mono text-green-400 flex items-center gap-1 font-bold">
                       <Icons.Check size={14} /> Yes
                     </span>
@@ -247,7 +247,7 @@ export const ScorecardDetail: React.FC<ScorecardDetailProps> = ({ vendor, onBack
             <GlassCard>
               <h3 className="text-lg font-bold text-white mb-4">Certifications</h3>
               <div className="flex flex-wrap gap-2">
-                {['ISO 9001', 'OSHA 30', 'LEED Silver', 'Minority Owned'].map((cert) => (
+                {['Health Safety A+', 'ISO 22000', 'Fair Trade', 'Eco-Packaging'].map((cert) => (
                   <span key={cert} className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs font-medium text-text-secondary hover:text-white hover:border-white/20 transition-colors cursor-default">
                     {cert}
                   </span>
@@ -256,28 +256,28 @@ export const ScorecardDetail: React.FC<ScorecardDetailProps> = ({ vendor, onBack
             </GlassCard>
 
             <GlassCard>
-              <h3 className="text-lg font-bold text-white mb-4">Recent Projects</h3>
+              <h3 className="text-lg font-bold text-white mb-4">Active Routes / Locations</h3>
               <ul className="space-y-4">
                 <li className="flex justify-between items-start text-sm">
                   <div>
-                    <span className="text-white font-medium block">Skyline Tower A</span>
-                    <span className="text-xs text-text-secondary">Structural Steel</span>
+                    <span className="text-white font-medium block">Tech Park North (Bldg 1-4)</span>
+                    <span className="text-xs text-text-secondary">Snack & Beverage</span>
                   </div>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-green-500/10 text-green-400 border border-green-500/20">Completed</span>
+                  <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-green-500/10 text-green-400 border border-green-500/20">Operational</span>
                 </li>
                 <li className="flex justify-between items-start text-sm">
                   <div>
-                    <span className="text-white font-medium block">Metro Station Refit</span>
-                    <span className="text-xs text-text-secondary">Electrical</span>
+                    <span className="text-white font-medium block">Downtown Station Hub</span>
+                    <span className="text-xs text-text-secondary">Coffee Kiosks</span>
                   </div>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">In Progress</span>
+                  <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">Maintenance</span>
                 </li>
                 <li className="flex justify-between items-start text-sm">
                   <div>
-                    <span className="text-white font-medium block">Harbor Logistics</span>
-                    <span className="text-xs text-text-secondary">Concrete</span>
+                    <span className="text-white font-medium block">Hospital Wing C</span>
+                    <span className="text-xs text-text-secondary">Healthy Options</span>
                   </div>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-white/10 text-text-secondary border border-white/10">Pending</span>
+                  <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-white/10 text-text-secondary border border-white/10">Restocking</span>
                 </li>
               </ul>
             </GlassCard>

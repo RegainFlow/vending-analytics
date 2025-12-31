@@ -22,7 +22,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
         </div>
         <div>
           <h1 className="font-logo font-bold text-lg tracking-wide text-white">RegainFlow</h1>
-          <p className="text-xs text-primary font-mono tracking-widest">SCORECARD</p>
+          <p className="text-xs text-primary font-mono tracking-widest">VENDING ANALYTICS</p>
         </div>
       </div>
 
@@ -33,8 +33,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
             onClick={() => setActiveTab(item.id)}
             className={`
               w-full flex items-center gap-4 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200
-              ${activeTab === item.id 
-                ? 'bg-primary-alpha15 text-primary border border-primary-alpha25 shadow-glow-subtle' 
+              ${activeTab === item.id
+                ? 'bg-primary-alpha15 text-primary border border-primary-alpha25 shadow-glow-subtle'
                 : 'text-text-secondary hover:text-white hover:bg-white/5'}
             `}
           >
