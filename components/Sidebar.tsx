@@ -21,8 +21,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
           <Icons.Shield size={20} />
         </div>
         <div>
-          <h1 className="font-logo font-bold text-lg tracking-wide text-white">RegainFlow</h1>
-          <p className="text-xs text-primary font-mono tracking-widest">VENDING ANALYTICS</p>
+          <h1 className="font-logo font-bold text-lg tracking-wide text-white">Vending Analytics</h1>
+          <p className="text-xs text-primary font-mono tracking-widest">Data-Driven Insights</p>
         </div>
       </div>
 
