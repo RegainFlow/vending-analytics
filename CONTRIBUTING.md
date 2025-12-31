@@ -1,6 +1,6 @@
-# Contributing to Supplier Risk Assessment & Performance Dashboard
+# Contributing to Vending Analytics Platform
 
-Welcome to the **Supplier Risk Assessment & Performance Dashboard** project! This document provides a comprehensive overview of the project architecture, development guidelines, and contribution workflow to help you scale and contribute effectively.
+Welcome to the **Vending Analytics Platform** project! This document provides a comprehensive overview of the project architecture, development guidelines, and contribution workflow to help you scale and contribute effectively.
 
 ---
 
@@ -24,12 +24,12 @@ Welcome to the **Supplier Risk Assessment & Performance Dashboard** project! Thi
 
 ### What is This Project?
 
-The **Supplier Risk Assessment & Performance Dashboard** is an AI-powered vendor risk assessment platform designed for procurement and supply chain teams. It provides:
+The **Vending Analytics Platform** is an AI-powered fleet optimization system designed for vending operations and route management. It provides:
 
-- **Real-time Risk Scoring**: Automated vendor assessment across financial health, safety records, project performance, and compliance
-- **AI-Driven Analysis**: Mock AI analysis for vendor evaluation (previously integrated with Gemini AI)
-- **Interactive Dashboard**: Visual analytics and metrics for portfolio-wide risk management
-- **Vendor Management**: Comprehensive vendor profiles with detailed scorecards
+- **Real-time Inventory Monitoring**: Automated stock level tracking and predictive restocking alerts
+- **Machine Health Analytics**: IoT telemetry monitoring for preventative maintenance
+- **Route Optimization**: AI-driven route planning for efficient restocking
+- **Sales Velocity Analysis**: Comprehensive insights into product performance by location
 
 ### Tech Stack
 
@@ -64,18 +64,18 @@ This project follows a **feature-based architecture** inspired by [bulletproof-r
 ## Current Project Structure
 
 ```
-Supplier-Risk-Assessment-Scorecard/
+Vending-Analytics/
 ├── components/              # Shared UI components
-│   ├── Dashboard.tsx       # Main dashboard view
-│   ├── VendorList.tsx      # Vendor listing with filters
-│   ├── ScorecardDetail.tsx # Detailed vendor scorecard
+│   ├── Dashboard.tsx       # Main analytics dashboard
+│   ├── MachineList.tsx     # Machine listing with filters
+│   ├── MachineDetail.tsx   # Detailed machine telemetry
 │   ├── Sidebar.tsx         # Navigation sidebar
 │   ├── GlassCard.tsx       # Reusable glass morphism card
-│   ├── RiskBadge.tsx       # Risk level indicator
+│   ├── StatusBadge.tsx     # Status indicator (Online/Offline)
 │   └── Icons.tsx           # Icon components
 │
 ├── services/               # External service integrations
-│   └── geminiService.ts    # AI service (currently mock data)
+│   └── telemetryService.ts # Vending telemetry (mock data)
 │
 ├── App.tsx                 # Main application component
 ├── types.ts                # Shared TypeScript types
@@ -108,7 +108,7 @@ src/
 ├── components/            # Shared components (used across features)
 │   ├── ui/               # Base UI components (Button, Card, Input)
 │   ├── layout/           # Layout components (Sidebar, Header)
-│   └── feedback/         # Feedback components (Toast, Modal)
+│   ├── feedback/         # Feedback components (Toast, Modal)
 │
 ├── config/               # Global configuration
 │   ├── env.ts           # Environment variables
@@ -142,35 +142,35 @@ src/
 Each feature should be self-contained with its own components, hooks, and logic:
 
 ```
-src/features/vendor-management/
-├── api/                  # API calls specific to vendor management
-│   ├── getVendors.ts
-│   ├── updateVendor.ts
-│   └── deleteVendor.ts
+src/features/fleet-management/
+├── api/                  # API calls specific to fleet management
+│   ├── getMachines.ts
+│   ├── updateStock.ts
+│   └── syncTelemetry.ts
 │
 ├── components/           # Feature-specific components
-│   ├── VendorList.tsx
-│   ├── VendorCard.tsx
-│   └── VendorFilters.tsx
+│   ├── MachineList.tsx
+│   ├── MachineCard.tsx
+│   └── MachineFilters.tsx
 │
 ├── hooks/               # Feature-specific hooks
-│   ├── useVendorFilters.ts
-│   └── useVendorSearch.ts
+│   ├── useMachineFilters.ts
+│   ├── useTelemetryStream.ts
 │
 ├── types/               # Feature-specific types
-│   └── vendor.ts
+│   └── machine.ts
 │
 └── utils/               # Feature-specific utilities
-    └── calculateRiskScore.ts
+    └── calculateHealthScore.ts
 ```
 
 ### Example Features to Create
 
-1. **`features/vendor-management/`** - Vendor CRUD operations, listing, filtering
-2. **`features/risk-assessment/`** - Risk scoring, AI analysis, metrics calculation
-3. **`features/analytics/`** - Dashboard charts, reports, data visualization
-4. **`features/qa-workflow/`** - Quality assurance review process
-5. **`features/compliance/`** - Compliance tracking and auditing
+1. **`features/fleet-management/`** - Machine status tracking, location mapping
+2. **`features/inventory-control/`** - Stock level monitoring, predictive restocking
+3. **`features/sales-analytics/`** - Revenue charts, product velocity metrics
+4. **`features/maintenance/`** - Error logging, service ticketing
+5. **`features/route-planning/`** - Geolocation optimization for drivers
 
 ### Migration Strategy
 
@@ -178,7 +178,7 @@ When scaling, follow this migration path:
 
 1. **Phase 1**: Create `src/` folder and move existing files
 2. **Phase 2**: Extract shared components to `src/components/`
-3. **Phase 3**: Create first feature module (e.g., `vendor-management`)
+3. **Phase 3**: Create first feature module (e.g., `fleet-management`)
 4. **Phase 4**: Migrate remaining components into feature modules
 5. **Phase 5**: Add global state management and API layer
 
@@ -231,7 +231,7 @@ Always use CSS variables instead of hardcoded values:
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd Supplier-Risk-Assessment-Scorecard
+   cd Vending-Analytics-Platform
    ```
 
 2. **Install dependencies**
@@ -274,22 +274,22 @@ Always use CSS variables instead of hardcoded values:
 
 - **Use explicit types** for function parameters and return values
 - **Define interfaces** for component props
-- **Use enums** for fixed sets of values (e.g., `RiskLevel`, `VendorStatus`)
+- **Use enums** for fixed sets of values (e.g., `MachineStatus`, `ProductCategory`)
 - **Avoid `any`** - use `unknown` if type is truly unknown
 
 ```typescript
 // ✅ Good
-interface VendorCardProps {
-  vendor: Vendor;
-  onSelect: (vendor: Vendor) => void;
+interface MachineCardProps {
+  machine: VendingMachine;
+  onSelect: (machine: VendingMachine) => void;
 }
 
-export const VendorCard: React.FC<VendorCardProps> = ({ vendor, onSelect }) => {
+export const MachineCard: React.FC<MachineCardProps> = ({ machine, onSelect }) => {
   // ...
 };
 
 // ❌ Bad
-export const VendorCard = (props: any) => {
+export const MachineCard = (props: any) => {
   // ...
 };
 ```
@@ -304,10 +304,10 @@ export const VendorCard = (props: any) => {
 
 ### File Naming Conventions
 
-- **Components**: `PascalCase.tsx` (e.g., `VendorCard.tsx`)
-- **Hooks**: `camelCase.ts` starting with `use` (e.g., `useVendorFilters.ts`)
-- **Utils**: `camelCase.ts` (e.g., `formatDate.ts`)
-- **Types**: `camelCase.ts` (e.g., `vendor.ts`)
+- **Components**: `PascalCase.tsx` (e.g., `MachineCard.tsx`)
+- **Hooks**: `camelCase.ts` starting with `use` (e.g., `useMachineFilters.ts`)
+- **Utils**: `camelCase.ts` (e.g., `formatCurrency.ts`)
+- **Types**: `camelCase.ts` (e.g., `telemetry.ts`)
 - **Constants**: `UPPER_SNAKE_CASE.ts` (e.g., `API_ENDPOINTS.ts`)
 
 ### Import Order
@@ -319,14 +319,14 @@ import { PiRobotDuotone } from 'react-icons/pi';
 
 // 2. Internal absolute imports
 import { GlassCard } from '~/components/ui/GlassCard';
-import { useVendorFilters } from '~/features/vendor-management/hooks/useVendorFilters';
+import { useMachineFilters } from '~/features/fleet-management/hooks/useMachineFilters';
 
 // 3. Relative imports
-import { calculateRiskScore } from '../utils/calculateRiskScore';
-import type { Vendor } from '../types/vendor';
+import { calculateHealthScore } from '../utils/calculateHealthScore';
+import type { VendingMachine } from '../types/machine';
 
 // 4. Styles
-import styles from './VendorCard.module.css';
+import styles from './MachineCard.module.css';
 ```
 
 ---
@@ -370,13 +370,13 @@ import { PiShieldCheckDuotone } from 'react-icons/pi';
 </div>
 ```
 
-### Risk Badge
+### Status Badge
 
 ```tsx
-import { RiskBadge } from '~/components/feedback/RiskBadge';
-import { RiskLevel } from '~/types';
+import { StatusBadge } from '~/components/feedback/StatusBadge';
+import { MachineStatus } from '~/types';
 
-<RiskBadge level={RiskLevel.MEDIUM} />
+<StatusBadge status={MachineStatus.ONLINE} />
 ```
 
 ---
@@ -390,18 +390,17 @@ import { RiskLevel } from '~/types';
 - **Mock external dependencies** (API calls, services)
 
 ```typescript
-// Example: utils/calculateRiskScore.test.ts
-import { calculateRiskScore } from './calculateRiskScore';
+// Example: utils/calculateHealthScore.test.ts
+import { calculateHealthScore } from './calculateHealthScore';
 
-describe('calculateRiskScore', () => {
-  it('should return high risk for low scores', () => {
-    const metrics = {
-      financialHealth: 40,
-      safetyRecord: 50,
-      projectPerformance: 60,
-      compliance: 45
+describe('calculateHealthScore', () => {
+  it('should return low heatlh for frequent errors', () => {
+    const telemetry = {
+      uptime: 85,
+      errorCount: 15,
+      temperature: 42, // High temp!
     };
-    expect(calculateRiskScore(metrics)).toBe(RiskLevel.HIGH);
+    expect(calculateHealthScore(telemetry)).toBe(HealthLevel.CRITICAL);
   });
 });
 ```
@@ -416,7 +415,7 @@ describe('calculateRiskScore', () => {
 
 - **Test feature workflows** end-to-end
 - **Use MSW** (Mock Service Worker) for API mocking
-- **Test critical user paths** (vendor creation, risk assessment)
+- **Test critical user paths** (machine setup, restock alerts)
 
 ---
 
@@ -424,9 +423,9 @@ describe('calculateRiskScore', () => {
 
 ### Branch Naming
 
-- **Feature**: `feature/vendor-filtering`
-- **Bug Fix**: `fix/dashboard-crash`
-- **Refactor**: `refactor/extract-vendor-hooks`
+- **Feature**: `feature/restock-alerts`
+- **Bug Fix**: `fix/chart-rendering`
+- **Refactor**: `refactor/telemetry-hooks`
 - **Documentation**: `docs/update-contributing`
 
 ### Commit Messages
@@ -434,11 +433,11 @@ describe('calculateRiskScore', () => {
 Follow [Conventional Commits](https://www.conventionalcommits.org/):
 
 ```
-feat: add vendor filtering by risk level
-fix: resolve dashboard crash on empty data
-refactor: extract vendor list logic to custom hook
+feat: add predictive restock alerts
+fix: resolve map view crash on missing gps
+refactor: extract map logic to custom hook
 docs: update CONTRIBUTING.md with testing guidelines
-style: apply glass morphism to vendor cards
+style: apply glass morphism to machine cards
 ```
 
 ### Pull Request Process
@@ -486,7 +485,7 @@ Brief description of changes
 
 ### Recommended First Tasks
 
-- **Add new utility function** (e.g., date formatting)
+- **Add new utility function** (e.g., currency formatting)
 - **Create new shared component** (e.g., Loading spinner)
 - **Improve existing component** (e.g., add accessibility)
 - **Write tests** for existing utilities
@@ -519,6 +518,6 @@ This project is proprietary software. Please contact the project maintainers for
 
 ---
 
-**Thank you for contributing to the Supplier Risk Assessment & Performance Dashboard!** 🚀
+**Thank you for contributing to the Vending Analytics Platform!** 🚀
 
-Your contributions help build a safer, more efficient supply chain.
+Your contributions help build a more efficient and intelligent vending network.
